@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./layout.xhtml">
+    <ui:define name="content">
+        <h2>#{msg['panier']}</h2>
+        <p:poll interval="15" update="companies" />
+        <p:dataTable id="companies" value="#{panierView.companies}"
+                     var="company">
+            <p:column headerText="#{msg['example.symbol']}">
+                #{company.symbol}
+            </p:column>
+            <p:column headerText="#{msg['example.username']}">
+                #{company}
+            </p:column>
+            <p:column headerText="#{msg['quote']}">
+                #{panierView.getQuote(company)}€
+            </p:column>
+            <p:column headerText="#{msg['diff']}">
+
+                #{panierView.getDiff(company)}%
+            </p:column>
+            <p:column>
+                <p:commandButton icon="fa fa-trash"
+                                 styleClass="dataTableActions"
+                                 title="#{msg['app.delete']}"
+                                 actionListener="#{panierView.delete(company)}"
+                                 update="companies">
+                    <p:confirm header="#{msg['app.delete']}"
+                               message="#{msg['panier_delete']}"
+                               icon="fa fa-question-circle"/>
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+    </ui:define>
+</ui:composition>
+

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./layout.xhtml">
+    <ui:define name="content">
+        <h2>#{msg['recherche.societe']}</h2>
+        <f:facet name="title">#{msg['societe']}</f:facet>
+        <h:form id="searchForm">
+            <p:growl/>
+            <h:panelGrid columns="2" cellpadding="5">
+                <p:outputLabel for="search" value="#{msg['societe']}"/>
+                <p:inputText id="search" value="#{accueilView.societe}"/>
+            </h:panelGrid>
+            <p:commandButton value="#{msg['app.search']}"
+                             update="companies"/>
+        </h:form>
+        <p:dataTable id="companies" value="#{accueilView.companies}"
+                     var="company">
+            <p:column >
+                <p:selectBooleanCheckbox>
+                    <p:ajax process="@this" listener="#{accueilView.addCompany(company)}"/>
+                </p:selectBooleanCheckbox>
+            </p:column>
+            <p:column headerText="#{msg['example.symbol']}">
+                #{company.symbol}
+            </p:column>
+            <p:column headerText="#{msg['example.username']}">
+                #{company}
+            </p:column>
+            <p:column headerText="#{msg['quote']}">
+                #{accueilView.getQuote(company)}€
+            </p:column>
+        </p:dataTable>
+    </ui:define>
+</ui:composition>
+

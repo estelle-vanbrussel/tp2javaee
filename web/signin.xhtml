@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                template="./layout.xhtml">
+    <ui:define name="content">
+        <h:panelGrid columns="1" style="margin: 0 auto;">
+            <p:panel header="#{msg['app.signinform']}">
+                <h:form prependId="false">
+                    <p:messages/>
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <p:outputLabel for="j_username" value="#{msg['app.username']}"/>
+                        <p:inputText type="email" id="j_username" value="#{signInView.user.userName}"/>
+                        <h:outputLabel for="j_password" value="#{msg['app.password']}"/>
+                        <p:password id="j_password" value="#{signInView.user.password}"/>
+                        <p:spacer/>
+                        <p:commandButton value="#{msg['app.signin']}"
+                                         ajax="false" action="#{signInView.signIn()}"/>
+                    </h:panelGrid>
+                </h:form>
+            </p:panel>
+        </h:panelGrid>
+    </ui:define>
+
+</ui:composition>
