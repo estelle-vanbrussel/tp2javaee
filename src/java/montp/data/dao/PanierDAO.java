@@ -25,4 +25,9 @@ public class PanierDAO extends GenericDAO<Panier> {
                 .setParameter("company", company.getSymbol())
                 .getSingleResult();
     }
+
+    public List<String> getCompanies(){
+        return (List<String>) em.createQuery("SELECT DISTINCT p.company FROM Panier p")
+                .getResultList();
+    }
 }

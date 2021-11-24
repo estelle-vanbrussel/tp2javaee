@@ -15,6 +15,7 @@
             <p:menubar>
                 <p:menuitem value="#{msg['recherche.societe']}" outcome="/accueil"/>
                 <p:menuitem value="#{msg['panier']}" outcome="/panier"/>
+                <p:menuitem value="#{msg['gestion.user']}" outcome="/index" rendered="#{userSession.admin}"/>
                 <f:facet name="options">
                     <p:commandButton value="#{msg['app.logout']}"
                                      action="#{userSession.logout()}"/>

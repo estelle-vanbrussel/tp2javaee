@@ -52,7 +52,14 @@ public class IndexView implements Serializable {
             }
         }
     }
-
+    public void changeActive(User user){
+        if(userService.isActive(user)){
+            userService.disable(user);
+        }
+        else{
+            userService.enable(user);
+        }
+    }
     public String getEmailTo() { return emailTo;   }
     public void setEmailTo(String emailTo) {  this.emailTo = emailTo;  }
 }

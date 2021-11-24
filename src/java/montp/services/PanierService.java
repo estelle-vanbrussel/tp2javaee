@@ -20,4 +20,7 @@ public class PanierService extends GenericService<Panier, PanierDAO> {
     public Panier getPanierByCompany(User owner, Company company) {
         return dao.getPanier(owner, company);
     }
+    public List<String> getCompanies(){
+        return dao.getCompanies();
+    }
 }
